@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class="panel panel-info">
+  <div class="panel-heading"><center><h3><b><%= @post.title %></b></h3></center></div>
+
+<br><br>
+<p>
+  
+  <%= @post.body %>
+</p>
+	<div align="right">
+		<%= link_to 'Editar', edit_post_path(@post) , { :class=>"btn btn-warning" }%> 
+		<%= link_to 'Volver', posts_path , { :class=>"btn btn-default" }%>
+	</div>
+</div>
+</div>

@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<div class="panel panel-info">
+  <div class="panel-heading"><center><h3><b><%= link_to @post.title, '/posts/view/'+@post.id.to_s %></b></h3></center></div>	
+		<p ><h3>
+			<%= @post.body %></h3>
+		</p>
+		<div align="right">
+		<%= (@post.likes ? @post.likes.count.to_s : '0')   + ' likes' %>
+		<form action="/likes" method="post">
+			<input type="hidden" name="like[post_id]" value="<%=@post.id%>">
+			<input class="btn btn-primary btn-xs"  type="submit" value="Like"> 
+		</form>
+
+		<h6 class="media-heading muted"><%= @post.created_at.strftime("%d/%m/%Y %H:%M:%S") %><br></h6>
+		<br>
+		</div>
+		<div align="right">
+			<%= link_to 'Volver', '/', {:class =>"btn btn-default"}%>
+		</div>
+</div>
+<div class="panel panel-info">
+
+
+
+<form action="/comments" method="post">
+	<b>De un comentario:</b><br>
+	<input type="hidden" name="comment[post_id]" value="<%=@post.id%>">
+	&nbsp;&nbsp;&nbsp;&nbsp;<textarea name="comment[body]">
+	</textarea>
+	<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input  class="btn btn-primary" type="submit" value="Comentar"> 
+</form>
+<hr>
+
+<% @post.comments.order(:created_at).reverse.each do |comment| %>
+	<div class="media">
+		<p>&nbsp;<%= comment.body %></p>		
+		<p>&nbsp;<%= comment.created_at %></p>		
+	</div>
+<hr>
+<% end %>		
+</div>
+</div>
+
+
+
+
+

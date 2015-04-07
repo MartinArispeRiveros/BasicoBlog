@@ -1,0 +1,18 @@
+<% @posts.each do |post| %>
+  <div class="panel panel-info">
+    <h3 class="panel-heading">
+      <%= link_to post.title, '/posts/view/'+post.id.to_s %><br>
+	</h3> 		   
+	<p><h3><%= post.body %></h3></p>	    
+	<div align="right">
+		<%= (post.likes ? post.likes.count.to_s : '0')   + ' likes' %>
+		 <form action="/likes" method="post">
+      <input type="hidden" name="like[post_id]" value="<%=post.id%>">
+      <input class="btn btn-primary btn-xs" type="submit" value="Like"> 
+    </form>
+		<h6 class="media-heading muted"><%= post.created_at.strftime("%d/%m/%Y %H:%M:%S") %><br></h6>
+	</div>
+  </div><br>
+<% end %>
+
+	
