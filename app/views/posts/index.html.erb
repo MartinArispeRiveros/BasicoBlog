@@ -7,6 +7,13 @@
   <%= text_field_tag(:q) %>
   <%= submit_tag("Buscar", { :class=>"btn btn-primary" }) %>
 <% end %>
+
+<%= form_tag("/posts", :method => "get") do %>
+  <%= label_tag(:category, "Categoria:") %>
+  <%= select_tag :category, options_for_select({'Todas'=>'','Deportes'=>'Deportes','Politica'=>'Politica','Otros'=>'Otros'}) %>
+  <%= submit_tag("Buscar", { :class=>"btn btn-primary" } )  %>
+<% end %>
+
 <br>
 </div>
 <br><br><br>

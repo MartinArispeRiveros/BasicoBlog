@@ -2,8 +2,13 @@
   <div class="panel panel-info">
     <h3 class="panel-heading">
       <%= link_to post.title, '/posts/view/'+post.id.to_s %><br>
-	</h3> 		   
+	</h3> 		 
+	<div align="right">
+		<h5><b>Categoria:</b> <%=post.category%></h5>  
+		<b>Usuario: </b><%= post.user_id %>
+	</div>
 	<p><h3><%= post.body %></h3></p>	    
+	
 	<div align="right">
 		<%= (post.likes ? post.likes.count.to_s : '0')   + ' likes' %>
 		 <form action="/likes" method="post">
@@ -15,4 +20,4 @@
   </div><br>
 <% end %>
 
-	
+ 

@@ -22,6 +22,10 @@
     <p><b>Contenido</b></p><br>
     <%= f.text_area :body, { :class=>"form-control" }%>
   </div>
+  <div class="field">
+    <%= f.label :category %><br />
+    <%= f.select :category, ['Deportes','Politica','Otros'] %>
+  </div>
   <div class="actions">
     <%= f.submit  %>    
     <%= link_to 'Volver', posts_path , { :class=>"btn btn-default" }%>

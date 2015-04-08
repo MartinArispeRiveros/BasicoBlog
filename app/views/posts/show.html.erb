@@ -7,9 +7,11 @@
 <br><br>
 <p>
   
-  <%= @post.body %>
+  <%= @post.body %><br>
+  
 </p>
 	<div align="right">
+	<div align="left"><b>Categoria:</b><%= @post.category %></div>
 		<%= link_to 'Editar', edit_post_path(@post) , { :class=>"btn btn-warning" }%> 
 		<%= link_to 'Volver', posts_path , { :class=>"btn btn-default" }%>
 	</div>

@@ -7,6 +7,8 @@ class PostsController < ApplicationController
     #@posts = Post.all
     if params[:c] 
       @posts = Post.joins(:comments).where("comments.body LIKE '%#{params[:c]}%'").select("distinct posts.* ")
+    elsif params[:category] and params[:category] != ""
+      @posts = Post.where(:category=>params[:category])
     else
       q = params[:q] ? "body LIKE '%#{params[:q]}%'" : ""
       @posts = Post.where(q).order(:created_at).reverse  
@@ -47,9 +49,10 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.state = '1'
+    @post.user_id = 1
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.html { redirect_to @post, notice: 'Post fue creado excitosamente.' }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render action: "new" }
@@ -96,6 +99,8 @@ class PostsController < ApplicationController
     end
   end
 
+  
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
@@ -104,6 +109,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :body)
+      params.require(:post).permit(:title, :body, :category, :user_id)
     end
 end
